@@ -8,47 +8,51 @@ struct process
     int btime;
     int btimeleft;
 } p[10];
-
 int main()
 {
-	int n, i, j, q, left, time, totalwtime = 0, totalturnatime = 0;
-    printf("Enter the number of process: ");
-    scanf("%d", &n);
-     printf("Enter the time quantum: ");
-    scanf("%d", &q);
-    left = n;
-    for (i = 0; i < n; i++)
+ 
+  int count,j,n,time,remain,flag=0,time_quantum;
+  int wait_time=0,turnaround_time=0,at[10],bt[10],rt[10];
+  printf("Enter Total Process:\t ");
+  scanf("%d",&n);
+  remain=n;
+  for(count=0;count<n;count++)
+  {
+    printf("Enter Burst Time for Process Process Number %d :",count+1);
+    scanf("%d", );
+    rt[count]=bt[count];
+  }
+  printf("Enter Time Quantum:\t");
+  scanf("%d",&time_quantum);
+  printf("\n\nProcess\t|Turnaround Time|Waiting Time\n\n");
+  for(time=0,count=0;remain!=0;)
+  {
+    if(rt[count]<=time_quantum && rt[count]>0)
     {
-        p[i].pid = i;
-        printf("Enter the burst of process(P%d): ", i);
-        scanf("%d", &p[i].btime);
-        p[i].btimeleft = p[i].btime;
+      time+=rt[count];
+      rt[count]=0;
+      flag=1;
     }
-    i = 0, time = 0;
-	while (left != 0)
+    else if(rt[count]>0)
     {
-        j = i % n;
-        if (p[j].btimeleft == 0)
-            continue;
-        else if (p[j].btimeleft > q)
-        {
-            p[j].btimeleft = p[j].btimeleft - q;
-            time += q;
-        }
-        else if (p[j].btimeleft <= q)
-        {
-            time += p[j].btimeleft;
-            p[j].btimeleft = p[j].btimeleft - q;
-            p[j].wtime = time - p[j].btime;
-            p[j].turnatime = p[j].btime + p[j].wtime;
-            left--;
-        }
-        i++;
+      rt[count]-=time_quantum;
+      time+=time_quantum;
     }
-    printf("Process_no\tBurst_time\tWait_time\tTurn_time");
-	for(i=0; i < n; i++)
+    if(rt[count]==0 && flag==1)
     {
-        printf("\nP%d\t\t%d\t\t%d\t\t%d\n", p[i].pid,p[i].btime,p[i].wtime,p[i].turnatime);
+      remain--;
+      printf("P[%d]\t|\t%d\t|\t%d\n",count+1,time,time-bt[count]);
+      wait_time+=time-bt[count];
+      turnaround_time+=time;
+      flag=0;
     }
-	return 0;
+    if(count==n-1)
+      count=0;
+    else
+      count++;
+  }
+  printf("\nAverage Waiting Time= %f\n",wait_time*1.0/n);
+  printf("Avg Turnaround Time = %f",turnaround_time*1.0/n);
+  
+  return 0;
 }
