@@ -12,7 +12,7 @@ struct process
 
 int main()
 {
-    int n, i, j, totalwtime = 0, totalturnatime = 0;
+    int n, i, j, burst = 0, totalwtime = 0, totalturnatime = 0;
     printf("Enter the number of process: ");
     scanf("%d", &n);
     for(i = 0; i < n; i++)
@@ -41,18 +41,18 @@ int main()
     for(i = 0; i<n; i++)
     {
         if (i == 0)
-            p[i].wtime = p[i].atime;
+            p[i].wtime = 0;
         else
-            p[i].wtime = p[i-1].btime - p[i].atime;
+            p[i].wtime = (p[i - 1].turnatime + p[i - 1].atime) - p[i].atime;
         p[i].turnatime = p[i].btime + p[i].wtime;
         totalwtime += p[i].wtime;
         totalturnatime += p[i].turnatime;
 
     }
-    printf("Process_no\tBurst_time\tWait_time\tTurn_time");
+    printf("Process_no\tArrival_time\tBurst_time\tWait_time\tTurn_time");
 	for(i=0; i < n; i++)
     {
-        printf("\nP%d\t\t%d\t\t%d\t\t%d\n", p[i].pid,p[i].btime,p[i].wtime,p[i].turnatime);
+        printf("\nP%d\t\t%d\t\t%d\t\t%d\t\t%d\n", p[i].pid,p[i].atime,p[i].btime,p[i].wtime,p[i].turnatime);
     }
     printf("\n");
     printf("The average waiting time: %f", (float)totalwtime/n);
