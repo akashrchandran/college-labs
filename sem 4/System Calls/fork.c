@@ -13,7 +13,6 @@ int main()
 	}
 	else if (pid == 0)
 	{
-		printf("blah");
 		execlp("/bin/ls", "ls", NULL);
 	}
 	else
