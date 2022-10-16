@@ -10,7 +10,6 @@ import java.util.*;
 
 public class DeterminantofMatrix3x3 
 {
-	// Pretty classy offfff.........
 	public static void main(String[] args) 
 	{
 		Scanner scan = new Scanner(System.in);
