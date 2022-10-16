@@ -1,16 +1,6 @@
-/**
- * @author Akash R Chandran
- * @email chandranrakash@gmail.com
- * @create date 2022-02-13 19:45:23
- * @modify date 2022-04-25 22:22:27
- * @desc To find determinant of matrix
- */
-
-
 import java.util.*;
 
 public class DeterminantofMatrix {
-	// No idea what this does lol
 	static int determinant(int a[][])
 	{
 		int result = 0;
@@ -48,7 +38,6 @@ public class DeterminantofMatrix {
 		}
 		return result;
 	}
-	// Pretty classy offfff.........
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter of rows and columns in matrix: ");

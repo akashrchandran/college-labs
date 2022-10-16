@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MatrixMultiplocation {
+public class Matrix_Multiplication {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Enter of rows and columns in the first matrix: ");
