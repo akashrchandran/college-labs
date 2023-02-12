@@ -1,0 +1,4 @@
+ALPHA *
+BETA * symtab1.txt
+ALPHA 1006
+BETA 1009
