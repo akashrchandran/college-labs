@@ -11,7 +11,7 @@ int main()
     int csd, n, ser, s, cli, cport, newsd;
     char name[100], rcvmsg[100], rcvg[100], fname[100];
     struct sockaddr_in servaddr;
-    printf("Enter the port");
+    printf("Enter the port address\n");
     scanf("%d", &cport);
     csd = socket(AF_INET, SOCK_STREAM, 0);
     if (csd < 0)
@@ -28,9 +28,9 @@ int main()
         printf("Error in connection\n");
     else
         printf("connected\n");
-    printf("Enter the existing file name\t");
+    printf("Enter the existing file name: ");
     scanf("%s", name);
-    printf("Enter the new file name\t");
+    printf("Enter the new file name: ");
     scanf("%s", fname);
     fp = fopen(fname, "w");
     send(csd, name, sizeof(name), 0);
@@ -42,7 +42,7 @@ int main()
             printf("File is not available\n");
         if (strcmp(rcvg, "completed") == 0)
         {
-            printf("File is transferred........\n");
+            printf("\nFile is transferred........\n");
             fclose(fp);
             close(csd);
             break;
@@ -50,6 +50,6 @@ int main()
         else
             fputs(rcvg, stdout);
         fprintf(fp, "%s", rcvg);
-        return 0;
     }
+    return 0;
 }

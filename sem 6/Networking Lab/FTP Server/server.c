@@ -46,18 +46,16 @@ int main()
     }
     else
     {
-        while (fgets(fileread, sizeof(fileread), fp))
-        {
+        while (fgets(fileread, 100, fp))
+        {	
             if (send(newsd, fileread, sizeof(fileread), 0) < 0)
             {
                 printf("Can’t send file contents\n");
+                exit(0);
             }
             sleep(1);
         }
-        if (!fgets(fileread, sizeof(fileread), fp))
-        {
-            send(newsd, "completed", 999999999, 0);
-        }
+        send(newsd, "completed", 9, 0);
         return (0);
     }
 }
