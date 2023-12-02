@@ -1,6 +1,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <stdio.h>
+
 void main()
 {
     FILE *f;
@@ -75,18 +76,37 @@ void main()
             {
                 printf("\n%s is a operator", str);
             }
+            else if (strcmp("//", str) == 0)
+            {
+            	while ((c = getc(f)) != '\n')
+            	{
+            		printf("%c", c);
+            		continue;
+            	}
+            }
+            else if (strcmp("/*", str) == 0)
+            {
+            	while (1)
+            	{
+            		c = getc(f);
+            		if (c == '*')
+            			if ((c = getc(f)) == '/')
+            				break;
+            	}
+                c = getc(f);
+            }
             else
             {
                 printf("\n%s is a invalid operator", str);
             }
+            ungetc(c, f);
+    		i = 0;
         }
         else
         {
+    		printf("\n%c is a special symbol", c);
         }
     }
-    ungetc(c, f);
-    i = 0;
-    printf("\n%c is a special symbol", c);
     printf("\n");
     fclose(f);
 }
